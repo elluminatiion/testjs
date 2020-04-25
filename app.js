@@ -1,24 +1,24 @@
+var data;
 if (localStorage.getItem('lpu')) {
-    var data = JSON.parse(localStorage.getItem('lpu'));
+    data = JSON.parse(localStorage.getItem('lpu'));
+    createtable();
 } else {
-    var data = [
-        {
-            "full_name": "vitaliy",
-            "address": "kazan",
-            "phone": "242525235"
-        },
-        {
-            "full_name": "vitaliy",
-            "address": "kazan",
-            "phone": "242525235"
-        },
-        {
-            "full_name": "vitaliy",
-            "address": "kazan",
-            "phone": "242525235"
-        }
-    ];
-    lcput();
+    fileloadjson('lpu.json');
+}
+
+function fileloadjson(filename) {
+    request = new XMLHttpRequest();
+    request.open('GET', filename);
+    request.onloadend = function (e) {
+        parsejs(this.responseText);
+        createtable();
+        lcput();
+    }
+    request.send();
+}
+
+function parsejs(obj) {
+    data = JSON.parse(obj);
 }
 
 function lcput() {
@@ -77,5 +77,3 @@ function createtable() {
         }
     }
 }
-
-createtable();
