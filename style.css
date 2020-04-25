@@ -1,10 +1,21 @@
 .sttab {
     width:100%;
     margin:50px auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+.sttab td,th{
     border: 1px solid black;
 }
-.close {
+.sttab input{
     text-align: center;
+    width:100%;
+    border:none;
+    height: 32px;
+    cursor: pointer;
+}
+.close {
+    margin: auto;
     cursor: pointer;
     width: 32px;
     height: 32px;

@@ -26,7 +26,7 @@ function lcput() {
 }
 
 function texttr(name, id) {
-    return '<td><input onkeyup="changesave(' + name + ',' + id + ')" id="' + name + id + '" value="' + data[id][name] + '"></td>'
+    return '<td><input title="Нажмите, чтобы изменить" onkeyup="changesave(\'' + name + '\',' + id + ')" id="' + name + id + '" value="' + data[id][name] + '"></td>'
 }
 
 function deletetr(i) {
@@ -69,7 +69,7 @@ function createtable() {
     for (i = 0; i < data.length; i++) {
         if (data[i]) {
             tbodyid.innerHTML += '<tr id="id' + i + '">' +
-                '<td><div title="Удалить" class="close" onclick="deletetr(' + i + ')"></div></td>' +
+                '<td><div title="Нажмите, чтобы удалить" class="close" onclick="deletetr(' + i + ')"></div></td>' +
                 texttr('full_name', i) +
                 texttr('address', i) +
                 texttr('phone', i) +
