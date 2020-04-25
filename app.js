@@ -32,8 +32,9 @@ function texttr(name, id) {
 function deletetr(i) {
     result = confirm('Вы действительно хотите удалить?');
     if (result) {
+        document.getElementById('id' + i).remove();
         delete (data[i]);
-        createtable();
+        lcput();
     }
 }
 
@@ -55,21 +56,25 @@ function addel() {
         }
     }
 }
-function changesave(name,id){
-    data[id][name] = document.getElementById(name+id).value;
+
+function changesave(name, id) {
+    data[id][name] = document.getElementById(name + id).value;
     lcput();
 }
+
 function createtable() {
     lcput();
     tbodyid = document.getElementById('table_class');
     tbodyid.innerHTML = '';
     for (i = 0; i < data.length; i++) {
-        tbodyid.innerHTML += '<tr id="id' + i + '">' +
-            texttr('full_name', i) +
-            texttr('address', i) +
-            texttr('phone', i) +
-            '<td><input type="button" value="Удалить" onclick="deletetr(' + i + ')"></td>' +
-            '</tr>'
+        if (data[i]) {
+            tbodyid.innerHTML += '<tr id="id' + i + '">' +
+                texttr('full_name', i) +
+                texttr('address', i) +
+                texttr('phone', i) +
+                '<td><input type="button" value="Удалить" onclick="deletetr(' + i + ')"></td>' +
+                '</tr>'
+        }
     }
 }
 
