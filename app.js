@@ -69,10 +69,10 @@ function createtable() {
     for (i = 0; i < data.length; i++) {
         if (data[i]) {
             tbodyid.innerHTML += '<tr id="id' + i + '">' +
+                '<td><div title="Удалить" class="close" onclick="deletetr(' + i + ')"></div></td>' +
                 texttr('full_name', i) +
                 texttr('address', i) +
                 texttr('phone', i) +
-                '<td><input type="button" value="Удалить" onclick="deletetr(' + i + ')"></td>' +
                 '</tr>'
         }
     }
