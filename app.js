@@ -1,0 +1,76 @@
+if (localStorage.getItem('lpu')) {
+    var data = JSON.parse(localStorage.getItem('lpu'));
+} else {
+    var data = [
+        {
+            "full_name": "vitaliy",
+            "address": "kazan",
+            "phone": "242525235"
+        },
+        {
+            "full_name": "vitaliy",
+            "address": "kazan",
+            "phone": "242525235"
+        },
+        {
+            "full_name": "vitaliy",
+            "address": "kazan",
+            "phone": "242525235"
+        }
+    ];
+    lcput();
+}
+
+function lcput() {
+    localStorage.setItem('lpu', JSON.stringify(data));
+}
+
+function texttr(name, id) {
+    return '<td><input onkeyup="changesave(' + name + ',' + id + ')" id="' + name + id + '" value="' + data[id][name] + '"></td>'
+}
+
+function deletetr(i) {
+    result = confirm('Вы действительно хотите удалить?');
+    if (result) {
+        delete (data[i]);
+        createtable();
+    }
+}
+
+function addel() {
+    full_name = prompt('Введите наименование учреждения', '');
+    if (full_name !== null) {
+        adress = prompt('Введите адрес', '');
+        if (adress !== null) {
+            phone = prompt('Введите номер телефона', '');
+            if (phone !== null) {
+                result = {
+                    'full_name': full_name,
+                    'address': adress,
+                    'phone': phone
+                }
+                data.push(result);
+                createtable();
+            }
+        }
+    }
+}
+function changesave(name,id){
+    data[id][name] = document.getElementById(name+id).value;
+    lcput();
+}
+function createtable() {
+    lcput();
+    tbodyid = document.getElementById('table_class');
+    tbodyid.innerHTML = '';
+    for (i = 0; i < data.length; i++) {
+        tbodyid.innerHTML += '<tr id="id' + i + '">' +
+            texttr('full_name', i) +
+            texttr('address', i) +
+            texttr('phone', i) +
+            '<td><input type="button" value="Удалить" onclick="deletetr(' + i + ')"></td>' +
+            '</tr>'
+    }
+}
+
+createtable();
